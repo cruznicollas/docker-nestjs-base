@@ -8,8 +8,8 @@ services:
       context: .
       dockerfile: ./Dockerfile
       target: ${TARGET}
-    container_name: rest-nestjs-${TARGET}
-    image: jacksonbicalho/nestjs:dev
+    container_name: docker-nestjs-base-${TARGET}
+    image: ${IMAGE_NAME}:${IMAGE_TAG}
     environment:
       - NODE_ENV=${NODE_ENV}
       - SERVER_PORT=${SERVER_PORT}

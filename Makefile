@@ -5,7 +5,7 @@ all : new setup setup-check check-name destroy confirm-destroy lis-files
 
 new: check-name
 	@echo "creating new application"
-	nest new Testando --directory=. -p yarn -l TS
+	nest new $(name) --directory=. --skip-git -p yarn -l TS
 
 check-name:
 ifndef name
