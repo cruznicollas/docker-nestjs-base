@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  nest:
+    env_file:
+    - .env
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      target: ${TARGET}
+    container_name: rest-nestjs-${TARGET}
+    image: jacksonbicalho/nestjs:dev
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - SERVER_PORT=${SERVER_PORT}
+    volumes:
+      - .:/app
+    ports:
+    - 3000:${SERVER_PORT}
+    networks:
+      - nesjs-network
+
+networks:
+  nesjs-network:
+
+

@@ -1,0 +1,9 @@
+*/node_modules*
+/dist
+*.md
+*.yml
+
+*Dockerfile*
+*test.Dockerfile*
+*.env*
+*.git*
