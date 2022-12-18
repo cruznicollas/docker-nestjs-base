@@ -9,7 +9,7 @@ services:
       dockerfile: ./Dockerfile
       target: ${TARGET}
     container_name: docker-nestjs-base-${TARGET}
-    image: ${IMAGE_NAME}:${IMAGE_TAG}
+    image: ${IMAGE_NAME}-${TARGET}:${IMAGE_TAG}
     environment:
       - NODE_ENV=${NODE_ENV}
       - SERVER_PORT=${SERVER_PORT}
