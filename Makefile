@@ -5,7 +5,9 @@ all : new setup setup-check check-name destroy confirm-destroy lis-files
 
 new: check-name
 	@echo "creating new application"
+	mv README.md README.md.origin
 	nest new $(name) --directory=. --skip-git -p yarn -l TS
+	mv README.md.origin README.md
 
 check-name:
 ifndef name
@@ -29,15 +31,13 @@ file-rm += dist
 file-rm += test
 file-rm += node_modules
 file-rm += .eslintrc.js
-file-rm += .gitignore
 file-rm += nest-cli.json
 file-rm += package.json
-file-rm += .git
 file-rm += .prettierrc
 file-rm += tsconfig.build.json
 file-rm += yarn.lock
 file-rm += tsconfig.json
-file-rm += README.md
+
 
 destroy:
 	@if $(MAKE) -s confirm-destroy ; then \
