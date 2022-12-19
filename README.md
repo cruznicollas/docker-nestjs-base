@@ -4,9 +4,9 @@
 
 # Descrição
 
-Etrutura NestJs criada com Docker Multi-stage builds
+Estrutura NestJs criada com Docker Multi-stage builds
 
-Você terá um desempenho muito melhor na construção das imagens se habilitar o BuildKit, veja como gazer isso em
+Você terá um desempenho muito melhor na construção das imagens se habilitar o BuildKit, veja como fazer isso em
 https://docs.docker.com/build/buildkit/#getting-started
 
 
@@ -46,7 +46,7 @@ builder é o unico stage que não tem dependências locais. Então crie o app de
 
 É importante você saber que a aplicação é criada usando os seguintes parâmetros:
 
-- name que cocê é obrigado a informar
+- name *obrigatório
 - --skip-git
 - --package-manager [yarn]
 - --directory=. (Será sempre usado o diretório raíz da aplicação)
