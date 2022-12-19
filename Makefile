@@ -1,12 +1,12 @@
+-include .env
+
 all : new setup setup-check check-name destroy confirm-destroy lis-files
 .PHONY : all
-
--include .env
 
 new: check-name
 	@echo "creating new application"
 	mv README.md README.md.origin
-	nest new $(name) --directory=. --skip-git -p yarn -l TS
+	nest new $(name) --directory=. --skip-git --package-manager yarn --language TS
 	mv README.md.origin README.md
 
 check-name:
@@ -23,7 +23,6 @@ setup-check:
 	@echo "Installing dependencies and check files"
 	yarn install --check-files
 
-
 # To use the "confirm" target inside another target,
 # use the " if $(MAKE) -s confirm ; " syntax.
 file-rm = src
@@ -38,16 +37,12 @@ file-rm += tsconfig.build.json
 file-rm += yarn.lock
 file-rm += tsconfig.json
 
-
 destroy:
 	@if $(MAKE) -s confirm-destroy ; then \
 		rm -rf $(file-rm) ; \
 	fi
 
-# The CI environment variable can be set to a non-empty string,
-# it'll bypass this command that will "return true", as a "yes" answer.
 confirm-destroy: list-files
-
 	@if [[ -z "$(CI)" ]]; then \
 		REPLY="" ; \
 		read -p "⚠ Are you sure? [y/n] > " -r ; \
@@ -65,7 +60,6 @@ list-files:
 	@for v in $(file-rm) ; do \
 		echo $$v | xargs printf $(_LISTFILES); \
 	done
-
 
 _WARN := "\033[33m[%s]\033[0m %s\n"  # Yellow text for "printf"
 _TITLE := "\033[32m[%s]\033[0m %s\n" # Green text for "printf"
